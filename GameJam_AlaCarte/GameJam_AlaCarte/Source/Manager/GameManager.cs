@@ -1,5 +1,6 @@
 ﻿using GameJam_AlaCarte.Source.Boats;
 using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,6 +18,8 @@ namespace GameJam_AlaCarte.Source.Manager
         private TimeSpan Timer;
         private String Timer_String;
 
+        private Treasure Treasure;
+
         private Boat boat;
         private FogWar fog;
 
@@ -25,6 +28,9 @@ namespace GameJam_AlaCarte.Source.Manager
             TotalTime = new TimeSpan(0, 2, 30);
             boat = new BasicBoat();
             fog = new FogWar();
+
+            Treasure = new Treasure();
+
             Timer_String = "";
         }
 
@@ -50,6 +56,7 @@ namespace GameJam_AlaCarte.Source.Manager
             }
 
             boat.Update(gameTime);
+            Treasure.Update(gameTime);
             //fog.Update(gameTime);
 
             //fog.Update_Position(boat.get_position());
@@ -61,6 +68,7 @@ namespace GameJam_AlaCarte.Source.Manager
        
             _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.Black);
             boat.Draw(_spriteBatch);
+            Treasure.Draw(_spriteBatch);
             //fog.Draw(_spriteBatch);
         }
     }
