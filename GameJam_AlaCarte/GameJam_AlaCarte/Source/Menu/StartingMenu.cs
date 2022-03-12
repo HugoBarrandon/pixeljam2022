@@ -29,5 +29,10 @@ namespace GameJam_AlaCarte.Source.Menu
         {
             return start;
         }
+
+        public void Reset()
+        {
+            start = false;
+        }
     }
 }
