@@ -15,7 +15,7 @@ namespace GameJam_AlaCarte.Source.Boats
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        protected int speed = 1;
+        protected double speed = 0.2;
 
         public Boat()
         {
@@ -33,19 +33,19 @@ namespace GameJam_AlaCarte.Source.Boats
         {
             if(Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                Position.Y += speed;
+                Position.Y += (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Z))
             {
-                Position.Y -= speed;
+                Position.Y -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                Position.X -= speed;
+                Position.X -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                Position.X += speed;
+                Position.X += (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
         }
         public virtual void Draw(SpriteBatch _spriteBatch)
