@@ -16,7 +16,7 @@ namespace GameJam_AlaCarte.Source.Boats
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle((int)position.X, (int)position.Y, 16, 16), Color.White);
+            spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle((int)position.X, (int)position.Y, 32, 32), Color.White);
         }
 
     }
