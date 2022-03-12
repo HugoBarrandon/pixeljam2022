@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Manager;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,6 +10,7 @@ namespace GameJam_AlaCarte
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private GameManager GM;
 
         public Game1()
         {
@@ -18,7 +21,7 @@ namespace GameJam_AlaCarte
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            GM = new GameManager();
 
             base.Initialize();
         }
@@ -26,6 +29,8 @@ namespace GameJam_AlaCarte
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            TextureFinder.Load(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -35,7 +40,7 @@ namespace GameJam_AlaCarte
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            GM.Update(gameTime);
 
             base.Update(gameTime);
         }
