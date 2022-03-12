@@ -8,38 +8,44 @@ using System.Text;
 
 namespace GameJam_AlaCarte.Source.Boats
 {
-    abstract class Boat
+    public abstract class Boat
     {
-        protected Vector2 position;
-        protected int speed = 2;
+        protected Vector2 Position;
 
-        public Vector2 get_position()
-        {
-            return position;
-        }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
+        protected double speed = 0.2;
 
         public Boat()
         {
-            position = Vector2.Zero;
+            Position = Vector2.Zero;
+            Width = 16;
+            Height = 16;
+        }
+
+        public Vector2 Get_Position()
+        {
+            return Position;
         }
 
         public virtual void Update(GameTime gameTime, Vector2 screenCenter)
         {
             if(Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y -= speed;
+                Position.Y -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Z))
             {
-                position.Y += speed;
+                Position.Y += (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                position.X += speed;
+                Position.X += (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
             if(Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X -= speed;
+                Position.X -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
         }
         public virtual void Draw(SpriteBatch _spriteBatch)

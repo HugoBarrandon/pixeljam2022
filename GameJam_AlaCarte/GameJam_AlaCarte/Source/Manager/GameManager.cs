@@ -1,5 +1,6 @@
 ﻿using GameJam_AlaCarte.Source.Boats;
 using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,14 +18,21 @@ namespace GameJam_AlaCarte.Source.Manager
         private TimeSpan Timer;
         private String Timer_String;
 
+        private Treasure Treasure;
+
         private Boat boat;
         private FogWar fog;
+
+        private CollisionManager collisionManager;
 
         public GameManager()
         {
             TotalTime = new TimeSpan(0, 2, 30);
             boat = new BasicBoat();
             fog = new FogWar();
+            collisionManager = new CollisionManager();
+            Treasure = new Treasure();
+
             Timer_String = "";
         }
 
@@ -49,29 +57,35 @@ namespace GameJam_AlaCarte.Source.Manager
                 Timer_String = "Perdu";
             }
 
+            Treasure.Update(gameTime);
             boat.Update(gameTime,screenCenter);
             //fog.Update(gameTime);
 
             //fog.Update_Position(boat.get_position());
 
+            if(collisionManager.collision_Treasure(boat, Treasure))
+            {
+                Treasure.Move();
+            }
+
         }
 
         public void Draw(SpriteBatch _spriteBatch,Matrix transform)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.Black);
-            _spriteBatch.DrawString(TextureFinder.BasicFont, boat.get_position().X +" "+ boat.get_position().Y, new Vector2(10, 200), Color.Black);
-            _spriteBatch.End();
-
-            _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
             boat.Draw(_spriteBatch);
             _spriteBatch.End();
+
+            _spriteBatch.Begin(transformMatrix :transform, samplerState: SamplerState.PointClamp);
             //fog.Draw(_spriteBatch); 
+            Treasure.Draw(_spriteBatch);
+            _spriteBatch.End();
         }
 
         public Vector2 GetBoatPosition()
         {
-            return boat.get_position();
+            return boat.Get_Position();
         }
     }
 }
