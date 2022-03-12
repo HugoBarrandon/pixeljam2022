@@ -11,6 +11,8 @@ namespace GameJam_AlaCarte.Source.Data
         public const int SPRITESIZE = 16;
 
         public static Texture2D BoatTexture { get; private set; }
+        public static Texture2D FogTexture { get; private set; }
+        public static Dictionary<String, Texture2D> MenuTexture { get; private set; }
 
 
         public static SpriteFont BasicFont { get; private set; }
@@ -19,8 +21,15 @@ namespace GameJam_AlaCarte.Source.Data
 
         public static void Load(ContentManager content)
         {
+            MenuTexture = new Dictionary<string, Texture2D>();
+
+
             BoatTexture = content.Load<Texture2D>("Boat/sprite_bateau_1");
+            FogTexture = content.Load<Texture2D>("Menu/Fog_of_War");
+
             BasicFont = content.Load<SpriteFont>("Font/BasicFont");
+
+            MenuTexture.Add("StartingMenu", content.Load<Texture2D>("Menu/StartingMenu"));
             LoadTiles(content);
         }
 
@@ -30,7 +39,6 @@ namespace GameJam_AlaCarte.Source.Data
             Tiles.Add(TileType.Ground, content.Load<Texture2D>("Tiles/sprite_ile_1"));
             Tiles.Add(TileType.Water, content.Load<Texture2D>("Tiles/sprite_mer_2"));
             Tiles.Add(TileType.Sand, content.Load<Texture2D>("Tiles/sprite_sable"));
-
 
         }
     }
