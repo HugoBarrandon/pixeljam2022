@@ -12,8 +12,8 @@ namespace GameJam_AlaCarte.Source.Boats
     {
         protected Vector2 Position;
 
-        public int Width { get; }
-        public int Height { get; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
 
         protected int speed = 1;
 
