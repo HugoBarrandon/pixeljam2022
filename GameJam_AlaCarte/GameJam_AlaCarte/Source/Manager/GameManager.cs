@@ -23,12 +23,14 @@ namespace GameJam_AlaCarte.Source.Manager
         private Boat boat;
         private FogWar fog;
 
+        private CollisionManager collisionManager;
+
         public GameManager()
         {
             TotalTime = new TimeSpan(0, 2, 30);
             boat = new BasicBoat();
             fog = new FogWar();
-
+            collisionManager = new CollisionManager();
             Treasure = new Treasure();
 
             Timer_String = "";
@@ -61,7 +63,10 @@ namespace GameJam_AlaCarte.Source.Manager
 
             //fog.Update_Position(boat.get_position());
 
-            collision_Treasure(boat, Treasure);
+            if(collisionManager.collision_Treasure(boat, Treasure))
+            {
+                Treasure.Move();
+            }
 
         }
 
@@ -74,17 +79,5 @@ namespace GameJam_AlaCarte.Source.Manager
             //fog.Draw(_spriteBatch);
         }
 
-        public void collision_Treasure(Boat b, Treasure t)
-        {
-            Vector2 rect1 = b.Get_Position();
-            Vector2 rect2 = t.Get_Position();
-            if (rect1.X < rect2.X + t.Width &&
-                   rect1.X + b.Width > rect2.X &&
-                   rect1.Y < rect2.Y + t.Height &&
-                   b.Height + rect1.Y > rect2.Y)
-            {
-                t.Move();
-            }
-        }
     }
 }
