@@ -18,6 +18,8 @@ namespace GameJam_AlaCarte.Source.Manager
         private TimeSpan Timer;
         private String Timer_String;
 
+        public bool finish { get; private set; }
+
         private Treasure Treasure;
 
         private Boat boat;
@@ -27,11 +29,13 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public GameManager()
         {
-            TotalTime = new TimeSpan(0, 2, 30);
+            TotalTime = new TimeSpan(0, 0, 10);
             boat = new BasicBoat();
             fog = new FogWar();
             collisionManager = new CollisionManager();
             Treasure = new Treasure();
+
+            finish = false;
 
             Timer_String = "";
         }
@@ -39,6 +43,7 @@ namespace GameJam_AlaCarte.Source.Manager
         public void init_time(GameTime gameTime)
         {
             TimerStart = gameTime.TotalGameTime;
+            finish = false;
         }   
 
         public void AddTime(int time)
@@ -55,6 +60,7 @@ namespace GameJam_AlaCarte.Source.Manager
             else
             {
                 Timer_String = "Perdu";
+                finish = true;
             }
 
             Treasure.Update(gameTime);

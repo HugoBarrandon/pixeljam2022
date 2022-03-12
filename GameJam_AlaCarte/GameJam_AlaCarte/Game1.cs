@@ -6,6 +6,7 @@ using GameJam_AlaCarte.Source.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace GameJam_AlaCarte
 {
@@ -78,6 +79,12 @@ namespace GameJam_AlaCarte
                     GM.Update(gameTime, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2));
                     Camera.Update(gameTime, GM.GetBoatPosition());
                     Map.Update(gameTime, keyboardState, mouseState, Vector2.Zero, Camera.Transform);
+
+                    if (GM.finish)
+                    {
+                        state = 0;
+                        Reset();
+                    }
                     break;
             }
 
@@ -103,8 +110,14 @@ namespace GameJam_AlaCarte
                 case 1:
                     Map.Draw(_spriteBatch, Camera.Transform);
                     GM.Draw(_spriteBatch, Camera.Transform);
+
                     break;
             }
+        }
+
+        public void Reset()
+        {
+            StartMenu.Reset();
         }
     }
 }
