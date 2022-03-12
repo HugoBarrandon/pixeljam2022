@@ -11,7 +11,7 @@ namespace GameJam_AlaCarte.Source.Boats
     abstract class Boat
     {
         protected Vector2 position;
-        protected int speed = 1;
+        protected int speed = 2;
 
         public Boat()
         {
@@ -22,19 +22,19 @@ namespace GameJam_AlaCarte.Source.Boats
         {
             if(Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y += speed * 1;
+                position.Y += speed * 16;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Z))
             {
-                position.Y -= speed * 1;
+                position.Y -= speed * 16;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                position.X -= speed * 1;
+                position.X -= speed * 16;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X += speed * 1;
+                position.X += speed * 16;
             }
         }
         public virtual void Draw(SpriteBatch _spriteBatch)
