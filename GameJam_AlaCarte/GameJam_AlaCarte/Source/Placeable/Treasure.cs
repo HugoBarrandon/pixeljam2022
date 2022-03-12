@@ -11,9 +11,31 @@ namespace GameJam_AlaCarte.Source.Placeable
     {
         private Vector2 Position;
 
+        public int Width {get;}
+        public int Height { get;}
+
         private int current_state = 0;
         private TimeSpan Time_Between = new TimeSpan(0, 0, 0, 0, 500);
         private TimeSpan Timer = new TimeSpan(0,0,0);
+
+        public Treasure()
+        {
+            Position = new Vector2(500, 500);
+            Height = 32;
+            Width = 32;
+        }
+
+        public Vector2 Get_Position()
+        {
+            return Position;
+        }
+
+        public void Move()
+        {
+            Random rand = new Random();
+            Position.X = rand.Next(0, 1600);
+            Position.Y = rand.Next(0, 900);
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -25,9 +47,9 @@ namespace GameJam_AlaCarte.Source.Placeable
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        override public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureFinder.TreasureTextures[current_state], new Rectangle(1000, 800, 64, 64), Color.White);
+            spriteBatch.Draw(TextureFinder.TreasureTextures[current_state], new Rectangle((int)Position.X, (int)Position.Y, Width, Height), Color.White);
         }
     }
 }
