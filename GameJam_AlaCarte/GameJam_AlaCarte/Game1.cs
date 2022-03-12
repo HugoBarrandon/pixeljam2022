@@ -71,10 +71,9 @@ namespace GameJam_AlaCarte
                 case 1:
                     var keyboardState = Keyboard.GetState();
                     var mouseState = Mouse.GetState();
-
-                    Camera.Update(gameTime, keyboardState, mouseState);
+                    GM.Update(gameTime, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2));
+                    Camera.Update(gameTime, GM.GetBoatPosition());
                     Map.Update(gameTime, keyboardState, mouseState, Vector2.Zero, Camera.Transform);
-                    GM.Update(gameTime);
                     break;
             }
 
@@ -85,24 +84,21 @@ namespace GameJam_AlaCarte
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            Map.Draw(_spriteBatch, Camera.Transform);
-            _spriteBatch.Begin();
+
 
             switch (state)
             {
                 case 0:
+                    _spriteBatch.Begin();
                     StartMenu.Draw(_spriteBatch);
+                    _spriteBatch.End();
                     break;
 
                 case 1:
-                    GM.Draw(_spriteBatch);
+                    Map.Draw(_spriteBatch, Camera.Transform);
+                    GM.Draw(_spriteBatch, Camera.Transform);
                     break;
             }
-
-            _spriteBatch.End();
-            
-
-            base.Draw(gameTime);
         }
     }
 }

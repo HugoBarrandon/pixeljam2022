@@ -9,14 +9,16 @@ namespace GameJam_AlaCarte.Source.Boats
 {
     class BasicBoat : Boat
     {
-        public override void Update(GameTime gameTime)
+        private Vector2 PosOnScreen;
+        public override void Update(GameTime gameTime, Vector2 screenCenter)
         {
-            base.Update(gameTime);
+            PosOnScreen = screenCenter;
+            base.Update(gameTime,screenCenter);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle((int)position.X, (int)position.Y, 32, 32), Color.White);
+            spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle((int)PosOnScreen.X, (int)PosOnScreen.Y, 32,32) , Color.White) ;
         }
 
     }

@@ -37,7 +37,7 @@ namespace GameJam_AlaCarte.Source.Manager
         {
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Vector2 screenCenter)
         {
             Timer = TotalTime - (gameTime.TotalGameTime - TimerStart);
             if (Timer.TotalSeconds > 0)
@@ -49,19 +49,29 @@ namespace GameJam_AlaCarte.Source.Manager
                 Timer_String = "Perdu";
             }
 
-            boat.Update(gameTime);
+            boat.Update(gameTime,screenCenter);
             //fog.Update(gameTime);
 
             //fog.Update_Position(boat.get_position());
 
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public void Draw(SpriteBatch _spriteBatch,Matrix transform)
         {
-       
+            _spriteBatch.Begin();
             _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.Black);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, boat.get_position().X +" "+ boat.get_position().Y, new Vector2(10, 200), Color.Black);
+            _spriteBatch.End();
+
+            _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
             boat.Draw(_spriteBatch);
-            //fog.Draw(_spriteBatch);
+            _spriteBatch.End();
+            //fog.Draw(_spriteBatch); 
+        }
+
+        public Vector2 GetBoatPosition()
+        {
+            return boat.get_position();
         }
     }
 }

@@ -20,26 +20,26 @@ namespace GameJam_AlaCarte.Source.Boats
 
         public Boat()
         {
-            position = new Vector2(100, 100);
+            position = Vector2.Zero;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Vector2 screenCenter)
         {
             if(Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y += speed;
+                position.Y -= speed;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Z))
             {
-                position.Y -= speed;
+                position.Y += speed;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                position.X -= speed;
+                position.X += speed;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X += speed;
+                position.X -= speed;
             }
         }
         public virtual void Draw(SpriteBatch _spriteBatch)
