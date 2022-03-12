@@ -61,6 +61,8 @@ namespace GameJam_AlaCarte.Source.Manager
 
             //fog.Update_Position(boat.get_position());
 
+            collision_Treasure(boat, Treasure);
+
         }
 
         public void Draw(SpriteBatch _spriteBatch)
@@ -70,6 +72,19 @@ namespace GameJam_AlaCarte.Source.Manager
             boat.Draw(_spriteBatch);
             Treasure.Draw(_spriteBatch);
             //fog.Draw(_spriteBatch);
+        }
+
+        public void collision_Treasure(Boat b, Treasure t)
+        {
+            Vector2 rect1 = b.Get_Position();
+            Vector2 rect2 = t.Get_Position();
+            if (rect1.X < rect2.X + t.Width &&
+                   rect1.X + b.Width > rect2.X &&
+                   rect1.Y < rect2.Y + t.Height &&
+                   b.Height + rect1.Y > rect2.Y)
+            {
+                t.Move();
+            }
         }
     }
 }
