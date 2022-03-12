@@ -19,7 +19,7 @@ namespace GameJam_AlaCarte.Source.Menu
             Choice = BonusType.Speed;
             ChoiceDone = false;
             NbBonus = 3;
-            this.Update();
+            
         }
 
 
@@ -33,16 +33,14 @@ namespace GameJam_AlaCarte.Source.Menu
             return Choice;
         }
 
-        public void Update()
+        public void Update(Point position)
         {
             WindowDimension.X = GraphicsDeviceManager.DefaultBackBufferWidth;
             WindowDimension.Y = GraphicsDeviceManager.DefaultBackBufferHeight;
-
-
         }
 
 
-        public void Draw(SpriteBatch _spriteBatch, Vector2 WindowDimension)
+        public void Draw(SpriteBatch _spriteBatch)
         {
            // _spriteBatch.Begin;
             _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(0, 0, (int)WindowDimension.X/3, (int)WindowDimension.Y/3), Color.White);

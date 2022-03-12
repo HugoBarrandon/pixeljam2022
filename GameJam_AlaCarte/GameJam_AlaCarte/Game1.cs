@@ -18,6 +18,7 @@ namespace GameJam_AlaCarte
         private Camera Camera;
         private Map Map;
         private StartingMenu StartMenu;
+        private BonusMenu BonusMenu;
 
         private int state = 0;
 
@@ -34,6 +35,7 @@ namespace GameJam_AlaCarte
             GM = new GameManager();
             Camera = new Camera(graphics.GraphicsDevice);
             StartMenu = new StartingMenu();
+            BonusMenu = new BonusMenu();
 
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
@@ -54,13 +56,15 @@ namespace GameJam_AlaCarte
 
         protected override void Update(GameTime gameTime)
         {
+            var mouseState= Mouse.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             switch (state)
             {
                 case 0:
                     StartMenu.Update(gameTime);
-                    if(StartMenu.is_starting())
+                    BonusMenu.Update(mouseState.Position);
+                    if (StartMenu.is_starting())
                     {
                         state += 1;
                         GM.init_time(gameTime);
@@ -70,11 +74,12 @@ namespace GameJam_AlaCarte
 
                 case 1:
                     var keyboardState = Keyboard.GetState();
-                    var mouseState = Mouse.GetState();
-
+                  
+                    
                     Camera.Update(gameTime, keyboardState, mouseState);
                     Map.Update(gameTime, keyboardState, mouseState, Vector2.Zero, Camera.Transform);
                     GM.Update(gameTime);
+                    
                     break;
             }
 
@@ -92,6 +97,7 @@ namespace GameJam_AlaCarte
             {
                 case 0:
                     StartMenu.Draw(_spriteBatch);
+                    BonusMenu.Draw(_spriteBatch);
                     break;
 
                 case 1:
