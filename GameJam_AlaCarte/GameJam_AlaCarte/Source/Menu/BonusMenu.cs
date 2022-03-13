@@ -73,7 +73,7 @@ namespace GameJam_AlaCarte.Source.Menu
                 /*_spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(0, 0, 300, 300), Color.White);
                 _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(533,100, 300, 300), Color.White);
                 _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(1067, 100, 300, 300), Color.White);*/
-                _spriteBatch.Draw(TextureFinder.TextureBonusMenu, new Rectangle(100, 100, 700, 350), Color.White);
+                _spriteBatch.Draw(TextureFinder.TextureBonusMenu, new Rectangle(100, 100, 1400, 700), Color.White);
                 //_spriteBatch.End();
 
             }

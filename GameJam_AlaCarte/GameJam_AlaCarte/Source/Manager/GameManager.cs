@@ -92,6 +92,9 @@ namespace GameJam_AlaCarte.Source.Manager
             _spriteBatch.Begin(transformMatrix :transform, samplerState: SamplerState.PointClamp);
             //fog.Draw(_spriteBatch); 
             Treasure.Draw(_spriteBatch);
+            _spriteBatch.End();
+
+            _spriteBatch.Begin();
             bonusMenu.Draw(_spriteBatch);
             _spriteBatch.End();
         }
