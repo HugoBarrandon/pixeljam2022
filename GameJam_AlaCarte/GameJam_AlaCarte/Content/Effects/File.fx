@@ -28,7 +28,7 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR0
 {
 	float4 color = tex2D(s0, input.TextureCoordinates);
-	float s = size / 10.0;
+	float s = size / 100.0;
 	if (input.TextureCoordinates.x > 0.5-s && input.TextureCoordinates.x < 0.5 + s &&
 		input.TextureCoordinates.y > 0.5 - s && input.TextureCoordinates.y < 0.5 + s) {
 		color = float4(0,0,0,0);

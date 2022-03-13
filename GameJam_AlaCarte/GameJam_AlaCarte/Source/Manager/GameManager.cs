@@ -40,6 +40,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
         private Effect Fog;
 
+        private int fov = 20;
         public GameManager()
         {
             TotalTime = new TimeSpan(0, 1, 0);
@@ -145,7 +146,11 @@ namespace GameJam_AlaCarte.Source.Manager
                             break;
 
                         case BonusType.FOV:
-
+                            fov += 5;
+                            if(fov > 50)
+                            {
+                                fov = 50;
+                            }
                             break;
                     }
                     boat.AddBonus();
@@ -178,7 +183,7 @@ namespace GameJam_AlaCarte.Source.Manager
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             Fog.CurrentTechnique.Passes[0].Apply();
-            Fog.Parameters["size"].SetValue(3);
+            Fog.Parameters["size"].SetValue(fov);
             _spriteBatch.Draw(TextureFinder.noir,new Rectangle(0,0,1600,900),Color.White);
             _spriteBatch.End();
 
