@@ -66,7 +66,7 @@ namespace GameJam_AlaCarte
             {
                 case 0:
                     StartMenu.Update(gameTime);
-                    BonusMenu.Update(mouseState);
+                    //BonusMenu.Update(mouseState);
                     
                     if (StartMenu.is_starting())
                     {
@@ -77,7 +77,7 @@ namespace GameJam_AlaCarte
 
 
                 case 1:
-                    GM.Update(gameTime, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2));
+                    GM.Update(gameTime, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2),mouseState);
                     Camera.Update(gameTime, GM.GetBoatPosition());
                     Map.Update(gameTime, keyboardState, mouseState, Vector2.Zero, Camera.Transform);
 
@@ -103,7 +103,7 @@ namespace GameJam_AlaCarte
                 case 0:
                     _spriteBatch.Begin();
                     StartMenu.Draw(_spriteBatch);
-                    BonusMenu.Draw(_spriteBatch);
+                    //BonusMenu.Draw(_spriteBatch);
                     _spriteBatch.End();
 
                     break;

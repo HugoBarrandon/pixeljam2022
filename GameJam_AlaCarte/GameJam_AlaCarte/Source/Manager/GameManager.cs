@@ -1,5 +1,6 @@
 ﻿using GameJam_AlaCarte.Source.Boats;
 using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Menu;
 using GameJam_AlaCarte.Source.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -27,6 +28,8 @@ namespace GameJam_AlaCarte.Source.Manager
 
         private CollisionManager collisionManager;
 
+        private BonusMenu bonusMenu;
+
         public GameManager()
         {
             TotalTime = new TimeSpan(0, 0, 10);
@@ -34,6 +37,7 @@ namespace GameJam_AlaCarte.Source.Manager
             fog = new FogWar();
             collisionManager = new CollisionManager();
             Treasure = new Treasure();
+            bonusMenu= new BonusMenu();
 
             finish = false;
 
@@ -50,7 +54,7 @@ namespace GameJam_AlaCarte.Source.Manager
         {
         }
 
-        public void Update(GameTime gameTime, Vector2 screenCenter)
+        public void Update(GameTime gameTime, Vector2 screenCenter, MouseState mouse)
         {
             Timer = TotalTime - (gameTime.TotalGameTime - TimerStart);
             if (Timer.TotalSeconds > 0)
@@ -65,6 +69,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
             Treasure.Update(gameTime);
             boat.Update(gameTime,screenCenter);
+            bonusMenu.Update(mouse);
             //fog.Update(gameTime);
 
             //fog.Update_Position(boat.get_position());
@@ -72,6 +77,7 @@ namespace GameJam_AlaCarte.Source.Manager
             if(collisionManager.collision_Treasure(boat, Treasure))
             {
                 Treasure.Move();
+                bonusMenu.ChoiceHasToBeMade();
             }
 
         }
@@ -86,6 +92,7 @@ namespace GameJam_AlaCarte.Source.Manager
             _spriteBatch.Begin(transformMatrix :transform, samplerState: SamplerState.PointClamp);
             //fog.Draw(_spriteBatch); 
             Treasure.Draw(_spriteBatch);
+            bonusMenu.Draw(_spriteBatch);
             _spriteBatch.End();
         }
 

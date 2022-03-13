@@ -18,7 +18,7 @@ namespace GameJam_AlaCarte.Source.Menu
         public BonusMenu()
         {
             Choice = BonusType.Time;
-            this.ChoiceDone = false;
+            this.ChoiceDone = true;
             NbBonus = 3;            
         }
 
@@ -70,11 +70,12 @@ namespace GameJam_AlaCarte.Source.Menu
             if (!ChoiceDone)
             {   //1600*900
                 //_spriteBatch.Begin();
-                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(0, 0, 300, 300), Color.White);
+                /*_spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(0, 0, 300, 300), Color.White);
                 _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(533,100, 300, 300), Color.White);
-                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(1067, 100, 300, 300), Color.White);
+                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(1067, 100, 300, 300), Color.White);*/
+                _spriteBatch.Draw(TextureFinder.TextureBonusMenu, new Rectangle(100, 100, 700, 350), Color.White);
                 //_spriteBatch.End();
-                
+
             }
         }
     }
