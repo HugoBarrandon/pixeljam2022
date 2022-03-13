@@ -46,6 +46,7 @@ namespace GameJam_AlaCarte.Source.Data
             Tiles.Add(TileType.Ground, content.Load<Texture2D>("Tiles/sprite_ile_1"));
             Tiles.Add(TileType.Water, content.Load<Texture2D>("Tiles/sprite_mer_2"));
             Tiles.Add(TileType.Sand, content.Load<Texture2D>("Tiles/sprite_sable"));
+            Tiles.Add(TileType.Water2, content.Load<Texture2D>("Tiles/sprite_mer_1"));
 
         }
     }
