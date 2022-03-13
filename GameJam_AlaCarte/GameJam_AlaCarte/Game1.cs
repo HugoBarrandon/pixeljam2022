@@ -72,6 +72,7 @@ namespace GameJam_AlaCarte
                     {
                         state += 1;
                         GM.init_time(gameTime);
+                        Update(gameTime);
                     }
                     break;
 
