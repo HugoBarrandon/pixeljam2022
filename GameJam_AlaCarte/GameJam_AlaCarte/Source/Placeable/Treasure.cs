@@ -1,4 +1,5 @@
 ﻿using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Map.Tile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,11 +31,38 @@ namespace GameJam_AlaCarte.Source.Placeable
             return Position;
         }
 
-        public void Move()
+        public void Move(List<List<int>> coord)
         {
+            bool nop = true;
+            int ind;
             Random rand = new Random();
-            Position.X = rand.Next(0, 400);
-            Position.Y = rand.Next(0, 400);
+
+            List<int> X = coord[0];
+            List<int> Y = coord[1];
+
+            while(nop)
+            {
+                Position.X = rand.Next(0, 16 * 8 * 8);
+                Position.Y = rand.Next(0, 16 * 8 * 8);
+                
+                if (X.Contains((int)Position.X))
+                {
+                    ind = X.IndexOf((int)Position.X);
+                    if (Y[ind] == Position.Y)
+                    {
+                        nop = true;
+                    }
+                    else
+                    {
+                        nop = false;
+                    }
+                }
+                else
+                {
+                    nop = false;
+                }
+            }
+
         }
 
         public void Update(GameTime gameTime)

@@ -55,12 +55,14 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public void init_time(GameTime gameTime)
         {
+            boat = new BasicBoat();
             TimerStart = gameTime.TotalGameTime;
             TotalTime = new TimeSpan(0, 1, 0);
             TimeTotalPause = new TimeSpan(0, 0, 0);
             TimePause.Restart();
             finish = false;
             boat.ResetSpeed();
+            Treasure.Move(Map.GetGround());
         }
 
         public void AddTime()
@@ -102,7 +104,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
                 if (collisionManager.collision_Treasure(boat, Treasure))
                 {
-                    Treasure.Move();
+                    Treasure.Move(Map.GetGround());
                     bonusMenu.ChoiceHasToBeMade();
                     TimePause.Start();
                 }
