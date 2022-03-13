@@ -60,6 +60,7 @@ namespace GameJam_AlaCarte.Source.Manager
             TimeTotalPause = new TimeSpan(0, 0, 0);
             TimePause.Restart();
             finish = false;
+            boat.ResetSpeed();
         }
 
         public void AddTime()
@@ -85,6 +86,16 @@ namespace GameJam_AlaCarte.Source.Manager
                 Treasure.Update(gameTime);
                 boat.Update(gameTime, screenCenter);
                 bonusMenu.Update(mouse);
+
+                if (!collisionManager.collision_map(boat.Get_Position(), Map.GetChunks(boat.Get_Position())))
+                {
+                    boat.Move();
+                }
+                else
+                {
+                    boat.MoveBack();
+                }
+
                 //fog.Update(gameTime);
 
                 //fog.Update_Position(boat.get_position());
@@ -104,7 +115,7 @@ namespace GameJam_AlaCarte.Source.Manager
                     switch (bonusMenu.GetChoice())
                     {
                         case BonusType.Speed:
-
+                            boat.IncreaseSpeed();
                             break;
 
                         case BonusType.Time:

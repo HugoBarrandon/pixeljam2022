@@ -13,6 +13,9 @@ namespace GameJam_AlaCarte.Source.Boats
         protected Vector2 Position;
         protected Vector2 Velocity;
 
+        protected Vector2 FuturPosition;
+        protected Vector2 PreviousPosition;
+
         public int Width { get; private set; }
         public int Height { get; private set; }
 
@@ -23,6 +26,8 @@ namespace GameJam_AlaCarte.Source.Boats
         public Boat()
         {
             Position = Vector2.Zero;
+            FuturPosition = Vector2.Zero;
+            PreviousPosition = Vector2.Zero;
             Velocity = Vector2.Zero;
             Width = 16;
             Height = 16;
@@ -49,6 +54,7 @@ namespace GameJam_AlaCarte.Source.Boats
             lastrotation = rotation;
             rotation = 0;
             Velocity = Vector2.Zero;
+            FuturPosition = Position;
             if(Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 Velocity.Y -= 1;
@@ -71,7 +77,7 @@ namespace GameJam_AlaCarte.Source.Boats
                 Velocity.X = Velocity.X * (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
                 Velocity.Y = Velocity.Y * (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
 
-                Position += Velocity;
+                FuturPosition += Velocity;
 
                 if(Velocity.X > 0) rotation += 7;
                 if(Velocity.X < 0) rotation += 17;
@@ -82,6 +88,18 @@ namespace GameJam_AlaCarte.Source.Boats
             if (rotation == 0 || !(rotation == 2 || rotation == 7 || rotation == 11 || rotation == 17 || rotation == 7 || rotation == 9 || rotation == 19 || rotation == 28 || rotation == 18))
                 rotation = lastrotation;
         }
+
+        public void Move()
+        {
+            PreviousPosition = Position;
+            Position = FuturPosition;
+        }
+
+        public void MoveBack()
+        {
+            Position = PreviousPosition;
+        }
+
         public virtual void Draw(SpriteBatch _spriteBatch)
         {
             throw new Exception("Draw from abstract class Boat");
