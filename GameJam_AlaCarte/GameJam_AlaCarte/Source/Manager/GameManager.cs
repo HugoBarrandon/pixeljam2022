@@ -35,7 +35,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public GameManager()
         {
-            TotalTime = new TimeSpan(0, 0, 10);
+            TotalTime = new TimeSpan(0, 1, 0);
             TimeTotalPause = new TimeSpan(0, 0, 0);
             TimePause = new Stopwatch();
 
@@ -53,7 +53,7 @@ namespace GameJam_AlaCarte.Source.Manager
         public void init_time(GameTime gameTime)
         {
             TimerStart = gameTime.TotalGameTime;
-            TotalTime = new TimeSpan(0, 0, 10);
+            TotalTime = new TimeSpan(0, 1, 0);
             TimeTotalPause = new TimeSpan(0, 0, 0);
             TimePause.Restart();
             finish = false;
