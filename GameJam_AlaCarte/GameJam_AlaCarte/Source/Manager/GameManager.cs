@@ -17,6 +17,9 @@ namespace GameJam_AlaCarte.Source.Manager
         private TimeSpan TimerStart;
         private TimeSpan TotalTime;
         private TimeSpan Timer;
+        private TimeSpan TimeTotalPause;
+        private Stopwatch TimePause;
+
         private String Timer_String;
 
         public bool finish { get; private set; }
@@ -32,7 +35,10 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public GameManager()
         {
-            TotalTime = new TimeSpan(0, 1, 0);
+            TotalTime = new TimeSpan(0, 0, 10);
+            TimeTotalPause = new TimeSpan(0, 0, 0);
+            TimePause = new Stopwatch();
+
             boat = new BasicBoat();
             fog = new FogWar();
             collisionManager = new CollisionManager();
@@ -47,37 +53,68 @@ namespace GameJam_AlaCarte.Source.Manager
         public void init_time(GameTime gameTime)
         {
             TimerStart = gameTime.TotalGameTime;
+            TotalTime = new TimeSpan(0, 0, 10);
+            TimeTotalPause = new TimeSpan(0, 0, 0);
+            TimePause.Restart();
             finish = false;
-        }   
+        }
 
-        public void AddTime(int time)
+        public void AddTime()
         {
+            TotalTime += new TimeSpan(0,0,30);
         }
 
         public void Update(GameTime gameTime, Vector2 screenCenter, MouseState mouse)
         {
-            Timer = TotalTime - (gameTime.TotalGameTime - TimerStart);
-            if (Timer.TotalSeconds > 0)
+            if (bonusMenu.IsChoiceDone())
             {
-                Timer_String = Timer.Minutes + ":" + Timer.Seconds + ":" + Timer.Milliseconds;
+                Timer = TotalTime - (gameTime.TotalGameTime - TimerStart) + TimeTotalPause;
+                if (Timer.TotalSeconds > 0)
+                {
+                    Timer_String = Timer.Minutes + ":" + Timer.Seconds + ":" + Timer.Milliseconds;
+                }
+                else
+                {
+                    Timer_String = "Perdu";
+                    finish = true;
+                }
+
+                Treasure.Update(gameTime);
+                boat.Update(gameTime, screenCenter);
+                bonusMenu.Update(mouse);
+                //fog.Update(gameTime);
+
+                //fog.Update_Position(boat.get_position());
+
+                if (collisionManager.collision_Treasure(boat, Treasure))
+                {
+                    Treasure.Move();
+                    bonusMenu.ChoiceHasToBeMade();
+                    TimePause.Start();
+                }
             }
             else
             {
-                Timer_String = "Perdu";
-                finish = true;
-            }
+                bonusMenu.Update(mouse);
+                if (bonusMenu.IsChoiceDone())
+                {
+                    switch (bonusMenu.GetChoice())
+                    {
+                        case BonusType.Speed:
+                            
+                            break;
 
-            Treasure.Update(gameTime);
-            boat.Update(gameTime,screenCenter);
-            bonusMenu.Update(mouse);
-            //fog.Update(gameTime);
+                        case BonusType.Time:
+                            AddTime();
+                            break;
+                        
+                        case BonusType.FOV:
 
-            //fog.Update_Position(boat.get_position());
-
-            if(collisionManager.collision_Treasure(boat, Treasure))
-            {
-                Treasure.Move();
-                bonusMenu.ChoiceHasToBeMade();
+                            break;
+                    }
+                    TimePause.Stop();
+                    TimeTotalPause = TimePause.Elapsed;
+                }
             }
 
         }

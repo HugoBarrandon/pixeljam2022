@@ -18,7 +18,7 @@ namespace GameJam_AlaCarte.Source.Menu
         public BonusMenu()
         {
             Choice = BonusType.Time;
-            this.ChoiceDone = true;
+            this.ChoiceDone = false;
             NbBonus = 3;            
         }
 
