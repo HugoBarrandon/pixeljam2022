@@ -149,6 +149,7 @@ namespace GameJam_AlaCarte.Source.Manager
                             break;
                     }
                     boat.AddBonus();
+                    TextureFinder.PlaySongWin();
                     TimePause.Stop();
                     TimeTotalPause = TimePause.Elapsed;
                 }
