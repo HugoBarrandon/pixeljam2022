@@ -19,6 +19,7 @@ namespace GameJam_AlaCarte.Source.Manager
         private TimeSpan Timer;
         private TimeSpan TimeTotalPause;
         private Stopwatch TimePause;
+        private TimeSpan TimeSpend;
 
         private String Timer_String;
 
@@ -28,6 +29,8 @@ namespace GameJam_AlaCarte.Source.Manager
 
         private Boat boat;
         private FogWar fog;
+
+        private int NbPoint = 0;
 
         public Map.Map Map { get; private set; }
 
@@ -39,6 +42,7 @@ namespace GameJam_AlaCarte.Source.Manager
         {
             TotalTime = new TimeSpan(0, 1, 0);
             TimeTotalPause = new TimeSpan(0, 0, 0);
+            TimeSpend = new TimeSpan(0, 0, 0);
             TimePause = new Stopwatch();
 
             boat = new BasicBoat();
@@ -47,6 +51,7 @@ namespace GameJam_AlaCarte.Source.Manager
             Treasure = new Treasure();
             bonusMenu= new BonusMenu();
 
+            NbPoint = 0;
 
             finish = false;
 
@@ -61,6 +66,7 @@ namespace GameJam_AlaCarte.Source.Manager
             TimeTotalPause = new TimeSpan(0, 0, 0);
             TimePause.Restart();
             finish = false;
+            NbPoint = 0;
             boat.ResetSpeed();
             Treasure.Move(Map.GetGround());
         }
@@ -72,6 +78,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public void Update(GameTime gameTime, Vector2 screenCenter, MouseState mouse)
         {
+            TimeSpend = gameTime.TotalGameTime - TimerStart;
             if (bonusMenu.IsChoiceDone())
             {
                 Timer = TotalTime - (gameTime.TotalGameTime - TimerStart) + TimeTotalPause;
@@ -107,6 +114,7 @@ namespace GameJam_AlaCarte.Source.Manager
                     Treasure.Move(Map.GetGround());
                     bonusMenu.ChoiceHasToBeMade();
                     TimePause.Start();
+                    NbPoint++;
                 }
             }
             else
@@ -138,7 +146,9 @@ namespace GameJam_AlaCarte.Source.Manager
         public void Draw(SpriteBatch _spriteBatch,Matrix transform)
         {
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.Black);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.White);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, "Points : " + NbPoint, new Vector2(10, 50), Color.White);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, "Temps : " + TimeSpend, new Vector2(10, 100), Color.White);
             boat.Draw(_spriteBatch);
             _spriteBatch.End();
 
