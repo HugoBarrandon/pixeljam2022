@@ -12,6 +12,7 @@ namespace GameJam_AlaCarte.Source.Data
 
         public static Texture2D BoatTexture { get; private set; }
         public static Texture2D FogTexture { get; private set; }
+        public static Texture2D TextureBonusMenu { get; private set; }
         public static Dictionary<String, Texture2D> MenuTexture { get; private set; }
         public static SpriteFont BasicFont { get; private set; }
 
@@ -25,6 +26,7 @@ namespace GameJam_AlaCarte.Source.Data
 
             BoatTexture = content.Load<Texture2D>("Boat/sprite_bateau_1");
             FogTexture = content.Load<Texture2D>("Menu/Fog_of_War");
+            TextureBonusMenu = content.Load<Texture2D>("Menu/plaque-bonus");
             
             TreasureTextures.Add(content.Load<Texture2D>("Placeables/tresor1"));
             TreasureTextures.Add(content.Load<Texture2D>("Placeables/tresor2"));
