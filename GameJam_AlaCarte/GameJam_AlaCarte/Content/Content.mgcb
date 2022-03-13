@@ -188,6 +188,18 @@
 /processorParam:Quality=Best
 /build:Song/songwin.mp3
 
+#begin Tiles/sprite_arbre.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/sprite_arbre.png
+
 #begin Tiles/sprite_ile_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -272,6 +284,18 @@
 /processorParam:TextureFormat=Color
 /build:Tiles/sprite_mer_6.png
 
+#begin Tiles/sprite_montagne.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/sprite_montagne.png
+
 #begin Tiles/sprite_sable.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -283,4 +307,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Tiles/sprite_sable.png
+
+#begin Tiles/sprite_volcan.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/sprite_volcan.png
 

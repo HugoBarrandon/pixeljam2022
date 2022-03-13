@@ -71,7 +71,28 @@ namespace GameJam_AlaCarte.Source.Map.ProceduralGeneration
                     }
                     else
                     {
-                        map[i].Add(new Tile.Tile(TileType.Sand, new Vector2(offsetX + i, offsetY + j)));
+                        Random ran = new Random();
+                        int nb = ran.Next(0, 100);
+                        if (nb == 42)
+                        {
+                            map[i].Add(new Tile.Tile(TileType.Sand1, new Vector2(offsetX + i, offsetY + j)));
+
+                        }
+                        else if (nb == 54 )
+                        {
+                            map[i].Add(new Tile.Tile(TileType.Sand2, new Vector2(offsetX + i, offsetY + j)));
+
+                        }
+                        else if (nb == 69)
+                        {
+                            map[i].Add(new Tile.Tile(TileType.Sand3, new Vector2(offsetX + i, offsetY + j)));
+
+                        }
+                        else
+                        {
+                            map[i].Add(new Tile.Tile(TileType.Sand, new Vector2(offsetX + i, offsetY + j)));
+                        }
+
                     }
 
                 }

@@ -23,6 +23,7 @@ namespace GameJam_AlaCarte.Source.Data
 
         public static Dictionary<BoatType, Texture2D> TextureBoat { get; private set; }
 
+
         public static Microsoft.Xna.Framework.Media.Song SongJeu;
         public static Microsoft.Xna.Framework.Media.Song SongWin;
 
@@ -74,6 +75,9 @@ namespace GameJam_AlaCarte.Source.Data
             Tiles.Add(TileType.Water4, content.Load<Texture2D>("Tiles/sprite_mer_4"));
             Tiles.Add(TileType.Water5, content.Load<Texture2D>("Tiles/sprite_mer_5"));
             Tiles.Add(TileType.Water6, content.Load<Texture2D>("Tiles/sprite_mer_6"));
+            Tiles.Add(TileType.Sand1, content.Load<Texture2D>("Tiles/sprite_volcan"));
+            Tiles.Add(TileType.Sand2, content.Load<Texture2D>("Tiles/sprite_montagne"));
+            Tiles.Add(TileType.Sand3, content.Load<Texture2D>("Tiles/sprite_arbre"));
 
         }
 

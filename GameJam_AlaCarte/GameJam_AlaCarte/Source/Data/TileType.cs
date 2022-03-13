@@ -14,5 +14,8 @@ namespace GameJam_AlaCarte.Source.Data
         Water4,
         Water5,
         Water6,
+        Sand1,
+        Sand2,
+        Sand3,
     }
 }
