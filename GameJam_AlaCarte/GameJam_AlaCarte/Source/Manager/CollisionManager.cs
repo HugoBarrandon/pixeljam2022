@@ -71,7 +71,9 @@ namespace GameJam_AlaCarte.Source.Manager
                 return true;
             }
 
-            if(rect1.Y > 8*16*16)Debug.WriteLine(rect1.Y);
+
+            if (rect1.X > 16 * 8 * 16) { }
+            if (rect1.Y > 16 * 8 * 16) { }
 
             if (rect1.X < 0 || rect1.X > ((8*16*16) - TextureFinder.SPRITESIZE - 1)
                 || rect1.Y < 0 || rect1.Y > ((8 * 16 * 16) - TextureFinder.SPRITESIZE - 1))
