@@ -36,7 +36,7 @@ namespace GameJam_AlaCarte.Source.Map.ProceduralGeneration
                 map.Add(new List<Tile.Tile>());
                 for (int j = 0; j < size; j++)
                 {
-                    if (noise[i, j] < 150)
+                    if (noise[i, j] < 210)
                     {
                         map[i].Add(new Tile.Tile(TileType.Water, new Vector2(offsetX + i,offsetY + j)));
                     }
