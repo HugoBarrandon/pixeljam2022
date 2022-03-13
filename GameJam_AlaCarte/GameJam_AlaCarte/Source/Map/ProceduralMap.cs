@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using GameJam_AlaCarte.Source.Map.Tile;
+using System.Diagnostics;
 
 namespace GameJam_AlaCarte.Source.Map
 {
@@ -75,16 +76,18 @@ namespace GameJam_AlaCarte.Source.Map
             throw new NotImplementedException();
         }
 
-        public List<Chunk> GetChunks(Vector2 pos)
+        public override List<Chunk> GetChunks(Vector2 pos)
         {
             List<Chunk> ret = new List<Chunk>();
-            int X = (int)(pos.X / Chunk.SIZE);
-            int Y = (int)(pos.Y / Chunk.SIZE);
+            int X = (int)(pos.X / (Chunk.SIZE * TextureFinder.SPRITESIZE));
+            int Y = (int)(pos.Y / (Chunk.SIZE * TextureFinder.SPRITESIZE));
+
+
 
             int margeX = (int)pos.X % Chunk.SIZE;
             int margeY = (int)pos.Y % Chunk.SIZE;
 
-            int num = MAPSIZE * Y + X;
+            int num = MAPSIZE * (-1*Y) + (-1*X);
 
             ret.Add(Chunks[num]);
 

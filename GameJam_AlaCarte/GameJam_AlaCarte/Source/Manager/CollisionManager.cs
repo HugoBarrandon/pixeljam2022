@@ -33,18 +33,17 @@ namespace GameJam_AlaCarte.Source.Manager
             return false;
         }
 
-        public bool collision_map(Boat b, List<Chunk> chunks)
+        public bool collision_map(Vector2 pos, List<Chunk> chunks)
         {
-            Debug.WriteLine("Test");
-            foreach(Chunk c in chunks)
+            foreach (Chunk c in chunks)
             {
-                foreach(List<Tile> lt in c.Tiles)
+                foreach (List<Tile> lt in c.Tiles)
                 {
                     foreach(Tile t in lt)
                     {
-                        if(t.Type == TileType.Ground)
+                        if (t.Type == TileType.Sand)
                         {
-                            if (collision_Tile(b, t))
+                            if (collision_Tile(pos, t))
                                 return true;
                         }
                     }
@@ -53,14 +52,21 @@ namespace GameJam_AlaCarte.Source.Manager
             return false;
         }
 
-        public bool collision_Tile(Boat b, Tile t)
+        public bool collision_Tile(Vector2 pos, Tile t)
         {
-            Vector2 rect1 = -b.Get_Position();
+            Vector2 rect1 = pos;
             Vector2 rect2 = t.Get_Position();
+
+            rect1.X *= -1;
+            rect1.Y *= -1;
+
+            rect2.X *= TextureFinder.SPRITESIZE;
+            rect2.Y *= TextureFinder.SPRITESIZE;
+
             if (rect1.X < rect2.X + TextureFinder.SPRITESIZE &&
-                   rect1.X + b.Width > rect2.X &&
+                   rect1.X + TextureFinder.SPRITESIZE > rect2.X &&
                    rect1.Y < rect2.Y + TextureFinder.SPRITESIZE &&
-                   b.Height + rect1.Y > rect2.Y)
+                   TextureFinder.SPRITESIZE + rect1.Y > rect2.Y)
             {
                 return true;
             }
