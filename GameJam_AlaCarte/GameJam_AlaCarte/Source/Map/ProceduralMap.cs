@@ -96,5 +96,32 @@ namespace GameJam_AlaCarte.Source.Map
 
             return ret;
         }
+
+        public override List<List<int>> GetGround()
+        {
+            List<List<int>> ret = new List<List<int>>();
+            List<int> X = new List<int>();
+            List<int> Y = new List<int>();
+
+            foreach(Chunk c in Chunks)
+            {
+                foreach(List<Tile.Tile> lt in c.Tiles)
+                {
+                    foreach(Tile.Tile t in lt)
+                    {
+                        if(t.Type == TileType.Sand)
+                        {
+                            X.Add((int)t.Get_Position().X* TextureFinder.SPRITESIZE);
+                            Y.Add((int)t.Get_Position().Y* TextureFinder.SPRITESIZE);
+                        }
+                    }
+                }
+            }
+
+            ret.Add(X);
+            ret.Add(Y);
+
+            return ret;
+        }
     }
 }

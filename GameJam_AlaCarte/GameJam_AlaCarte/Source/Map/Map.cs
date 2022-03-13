@@ -16,6 +16,7 @@ namespace GameJam_AlaCarte.Source.Map
         public abstract void PlaceMachine();
 
         public abstract List<Chunk> GetChunks(Vector2 pos);
+        public abstract List<List<int>> GetGround();
     }
 }
 
