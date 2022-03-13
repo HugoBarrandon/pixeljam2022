@@ -14,6 +14,7 @@ namespace GameJam_AlaCarte.Source.Boats
         protected Vector2 Velocity;
 
         protected Vector2 FuturPosition;
+        protected Vector2 PreviousPosition;
 
         public int Width { get; private set; }
         public int Height { get; private set; }
@@ -26,6 +27,7 @@ namespace GameJam_AlaCarte.Source.Boats
         {
             Position = Vector2.Zero;
             FuturPosition = Vector2.Zero;
+            PreviousPosition = Vector2.Zero;
             Velocity = Vector2.Zero;
             Width = 16;
             Height = 16;
@@ -89,7 +91,13 @@ namespace GameJam_AlaCarte.Source.Boats
 
         public void Move()
         {
+            PreviousPosition = Position;
             Position = FuturPosition;
+        }
+
+        public void MoveBack()
+        {
+            Position = PreviousPosition;
         }
 
         public virtual void Draw(SpriteBatch _spriteBatch)

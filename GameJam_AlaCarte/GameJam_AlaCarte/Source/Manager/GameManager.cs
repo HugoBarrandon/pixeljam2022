@@ -91,6 +91,11 @@ namespace GameJam_AlaCarte.Source.Manager
                 {
                     boat.Move();
                 }
+                else
+                {
+                    boat.MoveBack();
+                }
+
                 //fog.Update(gameTime);
 
                 //fog.Update_Position(boat.get_position());

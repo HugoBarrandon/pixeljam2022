@@ -63,11 +63,15 @@ namespace GameJam_AlaCarte.Source.Manager
             rect2.X *= TextureFinder.SPRITESIZE;
             rect2.Y *= TextureFinder.SPRITESIZE;
 
+
+
             if (rect1.X < rect2.X + TextureFinder.SPRITESIZE &&
                    rect1.X + TextureFinder.SPRITESIZE > rect2.X &&
                    rect1.Y < rect2.Y + TextureFinder.SPRITESIZE &&
                    TextureFinder.SPRITESIZE + rect1.Y > rect2.Y)
             {
+                Debug.WriteLine(rect1);
+                Debug.WriteLine(rect2);
                 return true;
             }
 
