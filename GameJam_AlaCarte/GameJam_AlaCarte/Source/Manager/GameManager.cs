@@ -97,41 +97,6 @@ namespace GameJam_AlaCarte.Source.Manager
                 }
             }
 
-
-
-            Treasure.Update(gameTime);
-            boat.Update(gameTime,screenCenter);
-            bonusMenu.Update(mouse);
-            //fog.Update(gameTime);
-
-            //fog.Update_Position(boat.get_position());
-
-            if(collisionManager.collision_Treasure(boat, Treasure))
-            {
-                Treasure.Move();
-                bonusMenu.ChoiceHasToBeMade();
-                bonusMenu.Update(mouse);
-                if (bonusMenu.IsChoiceDone())
-                {
-                    switch (bonusMenu.GetChoice())
-                    {
-                        case BonusType.Speed:
-                            
-                            break;
-
-                        case BonusType.Time:
-                            AddTime();
-                            break;
-                        
-                        case BonusType.FOV:
-
-                            break;
-                    }
-                    TimePause.Stop();
-                    TimeTotalPause = TimePause.Elapsed;
-                }
-            }
-
         }
 
         public void Draw(SpriteBatch _spriteBatch,Matrix transform)

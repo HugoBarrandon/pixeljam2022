@@ -5,6 +5,7 @@ using GameJam_AlaCarte.Source.Placeable;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameJam_AlaCarte.Source.Manager
@@ -34,6 +35,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public bool collision_map(Boat b, List<Chunk> chunks)
         {
+            Debug.WriteLine("Test");
             foreach(Chunk c in chunks)
             {
                 foreach(List<Tile> lt in c.Tiles)

@@ -87,7 +87,6 @@ namespace GameJam_AlaCarte
 
                     if (GM.finish)
                     {
-                        Debug.WriteLine(i);
                         state = 0;
                         Reset();
                     }
