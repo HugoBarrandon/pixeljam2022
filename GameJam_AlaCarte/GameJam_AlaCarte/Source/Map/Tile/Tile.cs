@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameJam_AlaCarte.Source.Map.Tile
 {
-    class Tile 
+    public class Tile
     {
 
         public TileType Type { get; private set; }
@@ -33,6 +33,11 @@ namespace GameJam_AlaCarte.Source.Map.Tile
         public void Draw(SpriteBatch spriteBatch, Matrix transform)
         {
             spriteBatch.Draw(Texture, new Vector2(TextureFinder.SPRITESIZE * Position.X, TextureFinder.SPRITESIZE * Position.Y), Color.White);
+        }
+
+        public Vector2 Get_Position()
+        {
+            return Position;
         }
 
     }

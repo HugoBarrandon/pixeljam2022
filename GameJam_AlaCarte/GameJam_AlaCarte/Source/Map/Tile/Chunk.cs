@@ -6,7 +6,7 @@ using GameJam_AlaCarte.Source.Map.ProceduralGeneration;
 
 namespace GameJam_AlaCarte.Source.Map.Tile
 {
-    class Chunk 
+    public class Chunk 
     {
         public const int SIZE = 16;
 

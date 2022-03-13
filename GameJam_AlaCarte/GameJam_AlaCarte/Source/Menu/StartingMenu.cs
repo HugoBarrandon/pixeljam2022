@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameJam_AlaCarte.Source.Menu
@@ -14,7 +15,7 @@ namespace GameJam_AlaCarte.Source.Menu
 
         public void Update(GameTime gameTime)
         {
-            if(Keyboard.GetState().GetPressedKeys().Length > 0)
+            if(Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 start = true;
             }

@@ -1,4 +1,5 @@
 ﻿using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Map.Tile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -58,5 +59,15 @@ namespace GameJam_AlaCarte.Source.Map
         {
             throw new NotImplementedException();
         }
+
+        public override List<Chunk> GetChunks(Vector2 pos)
+        {
+            throw new NotImplementedException();
+        }
+        public override List<Coordonnees> GetGround()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

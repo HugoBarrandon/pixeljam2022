@@ -20,7 +20,7 @@ namespace GameJam_AlaCarte.Source.Camera
         public Camera(GraphicsDevice graphics, int baseX =0, int baseY =0) 
         {
             _graphics = graphics;
-            LastPosition = Vector2.Zero;
+            LastPosition = Vector2.One;
             CalculateTransform(_graphics.Viewport);
         }
 

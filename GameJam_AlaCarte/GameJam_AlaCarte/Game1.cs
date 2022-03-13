@@ -19,9 +19,11 @@ namespace GameJam_AlaCarte
         private Camera Camera;
         private Map Map;
         private StartingMenu StartMenu;
+        private FinishMenu FinishMenu;
         private BonusMenu BonusMenu;
 
         private int state = 0;
+        int i = 0;
 
         public Game1()
         {
@@ -37,6 +39,7 @@ namespace GameJam_AlaCarte
             Camera = new Camera(graphics.GraphicsDevice);
             StartMenu = new StartingMenu();
             BonusMenu = new BonusMenu();
+            FinishMenu = new FinishMenu();
 
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
@@ -50,8 +53,8 @@ namespace GameJam_AlaCarte
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TextureFinder.Load(Content);
-            GM.Load(Content);
-            Map = new ProceduralMap(GraphicsDevice);
+            GM.GenerateMap(GraphicsDevice);
+            Map = GM.Map;
 
             // TODO: use this.Content to load your game content here
         }
@@ -73,19 +76,32 @@ namespace GameJam_AlaCarte
                     {
                         state += 1;
                         GM.init_time(gameTime);
+                        Update(gameTime);
                     }
                     break;
 
 
                 case 1:
+                    i++;
                     GM.Update(gameTime, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2),mouseState);
                     Camera.Update(gameTime, GM.GetBoatPosition());
                     Map.Update(gameTime, keyboardState, mouseState, Vector2.Zero, Camera.Transform);
 
                     if (GM.finish)
                     {
-                        state = 0;
+                        FinishMenu.NbPoint = GM.NbPoint;
+                        FinishMenu.TimeSpend = GM.TimeSpend;
+                        state = 2;
                         Reset();
+                    }
+                    break;
+
+                case 2:
+                    FinishMenu.Update(gameTime);
+                    if(FinishMenu.next)
+                    {
+                        state = 0;
+                        FinishMenu = new FinishMenu();
                     }
                     break;
             }
@@ -96,7 +112,7 @@ namespace GameJam_AlaCarte
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
 
             switch (state)
@@ -104,7 +120,6 @@ namespace GameJam_AlaCarte
                 case 0:
                     _spriteBatch.Begin();
                     StartMenu.Draw(_spriteBatch);
-                    //BonusMenu.Draw(_spriteBatch);
                     _spriteBatch.End();
 
                     break;
@@ -112,6 +127,10 @@ namespace GameJam_AlaCarte
                 case 1:
                     Map.Draw(_spriteBatch, Camera.Transform);
                     GM.Draw(_spriteBatch, Camera.Transform);
+                    break;
+
+                case 2:
+                    FinishMenu.Draw(_spriteBatch);
                     break;
             }
         }

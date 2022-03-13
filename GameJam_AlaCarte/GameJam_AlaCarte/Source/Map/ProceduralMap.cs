@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using GameJam_AlaCarte.Source.Map.Tile;
+using System.Diagnostics;
 
 namespace GameJam_AlaCarte.Source.Map
 {
@@ -73,6 +74,49 @@ namespace GameJam_AlaCarte.Source.Map
         public override void PlaceMachine()
         {
             throw new NotImplementedException();
+        }
+
+        public override List<Chunk> GetChunks(Vector2 pos)
+        {
+            List<Chunk> ret = new List<Chunk>();
+            int X = (int)(pos.X / (Chunk.SIZE * TextureFinder.SPRITESIZE));
+            int Y = (int)(pos.Y / (Chunk.SIZE * TextureFinder.SPRITESIZE));
+
+
+
+            int margeX = -1*(int)pos.X % Chunk.SIZE;
+            int margeY = -1*(int)pos.Y % Chunk.SIZE;
+
+            if (X == -8) X = -7;
+            if (Y == -8) Y = -7;
+
+            int num = MAPSIZE * (-1*X) + (-1*Y);
+
+            ret.Add(Chunks[num]);
+
+            return ret;
+        }
+
+        public override List<Coordonnees> GetGround()
+        {
+            Coordonnees coo;
+            List<Coordonnees> ret = new List<Coordonnees>();
+
+            foreach(Chunk c in Chunks)
+            {
+                foreach(List<Tile.Tile> lt in c.Tiles)
+                {
+                    foreach(Tile.Tile t in lt)
+                    {
+                        if(t.Type == TileType.Sand)
+                        {
+                            coo = new Coordonnees(t.Get_Position().X * TextureFinder.SPRITESIZE, t.Get_Position().Y * TextureFinder.SPRITESIZE);
+                            ret.Add(coo);
+                        }
+                    }
+                }
+            }
+            return ret;
         }
     }
 }
