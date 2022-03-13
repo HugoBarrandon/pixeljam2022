@@ -11,6 +11,7 @@ namespace GameJam_AlaCarte.Source.Boats
     public abstract class Boat
     {
         protected Vector2 Position;
+        protected Vector2 Velocity;
 
         public int Width { get; private set; }
         public int Height { get; private set; }
@@ -22,6 +23,7 @@ namespace GameJam_AlaCarte.Source.Boats
         public Boat()
         {
             Position = Vector2.Zero;
+            Velocity = Vector2.Zero;
             Width = 16;
             Height = 16;
             rotation = 0;
@@ -36,26 +38,38 @@ namespace GameJam_AlaCarte.Source.Boats
         {
             lastrotation = rotation;
             rotation = 0;
+            Velocity = Vector2.Zero;
             if(Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                Position.Y -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
-                rotation += 11;
+                Velocity.Y -= 1;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Z))
             {
-                Position.Y += (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
-                rotation += 2;
+                Velocity.Y += 1;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                Position.X += (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
-                rotation += 7;
+                Velocity.X += 1;
             }
             if(Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                Position.X -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
-                rotation += 17;
+                Velocity.X -= 1;
             }
+            if(Velocity.Length() > 0)
+            {
+                Velocity.Normalize();
+                Velocity.X = Velocity.X * (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
+                Velocity.Y = Velocity.Y * (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
+
+                Position += Velocity;
+
+                if(Velocity.X > 0) rotation += 7;
+                if(Velocity.X < 0) rotation += 17;
+                if(Velocity.Y > 0) rotation += 2;
+                if(Velocity.Y < 0) rotation += 11;
+            }
+
+            Debug.WriteLine(Position);
             if (rotation == 0 || !(rotation == 2 || rotation == 7 || rotation == 11 || rotation == 17 || rotation == 7 || rotation == 9 || rotation == 19 || rotation == 28 || rotation == 18))
                 rotation = lastrotation;
         }
