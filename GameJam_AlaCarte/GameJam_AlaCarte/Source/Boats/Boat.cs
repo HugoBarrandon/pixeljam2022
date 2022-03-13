@@ -34,6 +34,16 @@ namespace GameJam_AlaCarte.Source.Boats
             return Position;
         }
 
+        public void ResetSpeed()
+        {
+            speed = 0.2;
+        }
+
+        public void IncreaseSpeed()
+        {
+            speed += 0.05;
+        }
+
         public virtual void Update(GameTime gameTime, Vector2 screenCenter)
         {
             lastrotation = rotation;
