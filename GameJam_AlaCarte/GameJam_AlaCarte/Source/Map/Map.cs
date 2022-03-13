@@ -1,4 +1,5 @@
-﻿using GameJam_AlaCarte.Source.Map.Tile;
+﻿using GameJam_AlaCarte.Source.Data;
+using GameJam_AlaCarte.Source.Map.Tile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,7 +17,7 @@ namespace GameJam_AlaCarte.Source.Map
         public abstract void PlaceMachine();
 
         public abstract List<Chunk> GetChunks(Vector2 pos);
-        public abstract List<List<int>> GetGround();
+        public abstract List<Coordonnees> GetGround();
     }
 }
 

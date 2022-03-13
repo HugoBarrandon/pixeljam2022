@@ -19,7 +19,7 @@ namespace GameJam_AlaCarte.Source.Manager
         private TimeSpan Timer;
         private TimeSpan TimeTotalPause;
         private Stopwatch TimePause;
-        private TimeSpan TimeSpend;
+        public TimeSpan TimeSpend;
 
         private String Timer_String;
 
@@ -30,7 +30,7 @@ namespace GameJam_AlaCarte.Source.Manager
         private Boat boat;
         private FogWar fog;
 
-        private int NbPoint = 0;
+        public int NbPoint = 0;
 
         public Map.Map Map { get; private set; }
 
@@ -116,6 +116,11 @@ namespace GameJam_AlaCarte.Source.Manager
                     bonusMenu.ChoiceHasToBeMade();
                     TimePause.Start();
                     NbPoint++;
+
+                    if(NbPoint == 10)
+                    {
+                        finish = true;
+                    }
                 }
             }
             else
@@ -150,7 +155,6 @@ namespace GameJam_AlaCarte.Source.Manager
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.White);
             _spriteBatch.DrawString(TextureFinder.BasicFont, "Points : " + NbPoint, new Vector2(10, 50), Color.White);
-            _spriteBatch.DrawString(TextureFinder.BasicFont, "Temps : " + TimeSpend, new Vector2(10, 100), Color.White);
             boat.Draw(_spriteBatch);
             _spriteBatch.End();
 

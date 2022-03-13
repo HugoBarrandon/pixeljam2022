@@ -64,7 +64,7 @@ namespace GameJam_AlaCarte.Source.Map
         {
             throw new NotImplementedException();
         }
-        public override List<List<int>> GetGround()
+        public override List<Coordonnees> GetGround()
         {
             throw new NotImplementedException();
         }

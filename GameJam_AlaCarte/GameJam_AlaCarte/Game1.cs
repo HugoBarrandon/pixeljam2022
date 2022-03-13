@@ -19,6 +19,7 @@ namespace GameJam_AlaCarte
         private Camera Camera;
         private Map Map;
         private StartingMenu StartMenu;
+        private FinishMenu FinishMenu;
         private BonusMenu BonusMenu;
 
         private int state = 0;
@@ -38,6 +39,7 @@ namespace GameJam_AlaCarte
             Camera = new Camera(graphics.GraphicsDevice);
             StartMenu = new StartingMenu();
             BonusMenu = new BonusMenu();
+            FinishMenu = new FinishMenu();
 
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
@@ -87,8 +89,19 @@ namespace GameJam_AlaCarte
 
                     if (GM.finish)
                     {
-                        state = 0;
+                        FinishMenu.NbPoint = GM.NbPoint;
+                        FinishMenu.TimeSpend = GM.TimeSpend;
+                        state = 2;
                         Reset();
+                    }
+                    break;
+
+                case 2:
+                    FinishMenu.Update(gameTime);
+                    if(FinishMenu.next)
+                    {
+                        state = 0;
+                        FinishMenu = new FinishMenu();
                     }
                     break;
             }
@@ -105,9 +118,9 @@ namespace GameJam_AlaCarte
             switch (state)
             {
                 case 0:
+                    Debug.WriteLine("Test1");
                     _spriteBatch.Begin();
                     StartMenu.Draw(_spriteBatch);
-                    //BonusMenu.Draw(_spriteBatch);
                     _spriteBatch.End();
 
                     break;
@@ -115,6 +128,10 @@ namespace GameJam_AlaCarte
                 case 1:
                     Map.Draw(_spriteBatch, Camera.Transform);
                     GM.Draw(_spriteBatch, Camera.Transform);
+                    break;
+
+                case 2:
+                    FinishMenu.Draw(_spriteBatch);
                     break;
             }
         }

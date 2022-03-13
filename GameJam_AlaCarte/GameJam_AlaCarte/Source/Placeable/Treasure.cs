@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameJam_AlaCarte.Source.Placeable
@@ -31,31 +32,22 @@ namespace GameJam_AlaCarte.Source.Placeable
             return Position;
         }
 
-        public void Move(List<List<int>> coord)
+        public void Move(List<Coordonnees> coord)
         {
             bool nop = true;
-            int ind;
             Random rand = new Random();
-
-            List<int> X = coord[0];
-            List<int> Y = coord[1];
+            Coordonnees coo;
 
             while(nop)
             {
                 Position.X = rand.Next(0, 16 * 8 * 8);
                 Position.Y = rand.Next(0, 16 * 8 * 8);
+
+                coo = new Coordonnees(Position.X, Position.Y);
                 
-                if (X.Contains((int)Position.X))
+                if (coord.Contains(coo))
                 {
-                    ind = X.IndexOf((int)Position.X);
-                    if (Y[ind] == Position.Y)
-                    {
                         nop = true;
-                    }
-                    else
-                    {
-                        nop = false;
-                    }
                 }
                 else
                 {

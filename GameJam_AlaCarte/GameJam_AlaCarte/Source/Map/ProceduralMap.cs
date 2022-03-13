@@ -97,11 +97,9 @@ namespace GameJam_AlaCarte.Source.Map
             return ret;
         }
 
-        public override List<List<int>> GetGround()
+        public override List<Coordonnees> GetGround()
         {
-            List<List<int>> ret = new List<List<int>>();
-            List<int> X = new List<int>();
-            List<int> Y = new List<int>();
+            List<Coordonnees> ret = new List<Coordonnees>();
 
             foreach(Chunk c in Chunks)
             {
@@ -111,16 +109,11 @@ namespace GameJam_AlaCarte.Source.Map
                     {
                         if(t.Type == TileType.Sand)
                         {
-                            X.Add((int)t.Get_Position().X* TextureFinder.SPRITESIZE);
-                            Y.Add((int)t.Get_Position().Y* TextureFinder.SPRITESIZE);
+                            ret.Add(new Coordonnees(t.Get_Position().X * TextureFinder.SPRITESIZE, t.Get_Position().Y * TextureFinder.SPRITESIZE));
                         }
                     }
                 }
             }
-
-            ret.Add(X);
-            ret.Add(Y);
-
             return ret;
         }
     }

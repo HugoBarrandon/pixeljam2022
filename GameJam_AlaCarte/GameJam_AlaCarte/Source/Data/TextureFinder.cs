@@ -37,6 +37,7 @@ namespace GameJam_AlaCarte.Source.Data
             BasicFont = content.Load<SpriteFont>("Font/BasicFont");
 
             MenuTexture.Add("StartingMenu", content.Load<Texture2D>("Menu/StartingMenu"));
+            MenuTexture.Add("FinishMenu", content.Load<Texture2D>("Menu/FinishMenu"));
 
 
             LoadTiles(content);
