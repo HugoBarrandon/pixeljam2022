@@ -63,18 +63,28 @@ namespace GameJam_AlaCarte.Source.Manager
             rect2.X *= TextureFinder.SPRITESIZE;
             rect2.Y *= TextureFinder.SPRITESIZE;
 
-
-
             if (rect1.X < rect2.X + TextureFinder.SPRITESIZE &&
                    rect1.X + TextureFinder.SPRITESIZE > rect2.X &&
                    rect1.Y < rect2.Y + TextureFinder.SPRITESIZE &&
                    TextureFinder.SPRITESIZE + rect1.Y > rect2.Y)
             {
-                Debug.WriteLine(rect1);
-                Debug.WriteLine(rect2);
                 return true;
             }
 
+
+            return false;
+        }
+
+        public bool collision_bord(Vector2 pos)
+        {
+            Vector2 rect1 = pos;
+
+            rect1.X *= -1;
+            rect1.Y *= -1;
+
+            if (rect1.X < 0 || rect1.X > ((8 * 16 * 16) - TextureFinder.SPRITESIZE - 1)
+                || rect1.Y < 0 || rect1.Y > ((8 * 16 * 16) - TextureFinder.SPRITESIZE - 1))
+                return true;
             return false;
         }
     }

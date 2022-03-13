@@ -87,7 +87,7 @@ namespace GameJam_AlaCarte.Source.Manager
                 boat.Update(gameTime, screenCenter);
                 bonusMenu.Update(mouse);
 
-                if (!collisionManager.collision_map(boat.Get_Position(), Map.GetChunks(boat.Get_Position())))
+                if (!collisionManager.collision_map(boat.Get_Position(), Map.GetChunks(boat.Get_Position())) && !collisionManager.collision_bord(boat.Get_Position()))
                 {
                     boat.Move();
                 }
