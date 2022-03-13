@@ -56,7 +56,7 @@ namespace GameJam_AlaCarte.Source.Boats
                 Position.X -= (float)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
                 rotation += 17;
             }
-            if (rotation == 0)
+            if (rotation == 0 || !(rotation == 2 || rotation == 7 || rotation == 11 || rotation == 17 || rotation == 7 || rotation == 9 || rotation == 19 || rotation == 28 || rotation == 18))
                 rotation = lastrotation;
         }
         public virtual void Draw(SpriteBatch _spriteBatch)
