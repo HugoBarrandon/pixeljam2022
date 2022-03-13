@@ -81,6 +81,7 @@ namespace GameJam_AlaCarte.Source.Data
         {
             MediaPlayer.Play(SongJeu);
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume =15.0f;
         }
 
         public static void PlaySongWin()
