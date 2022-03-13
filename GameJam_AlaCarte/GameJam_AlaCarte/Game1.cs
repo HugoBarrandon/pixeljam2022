@@ -118,7 +118,6 @@ namespace GameJam_AlaCarte
             switch (state)
             {
                 case 0:
-                    Debug.WriteLine("Test1");
                     _spriteBatch.Begin();
                     StartMenu.Draw(_spriteBatch);
                     _spriteBatch.End();

@@ -99,6 +99,7 @@ namespace GameJam_AlaCarte.Source.Map
 
         public override List<Coordonnees> GetGround()
         {
+            Coordonnees coo;
             List<Coordonnees> ret = new List<Coordonnees>();
 
             foreach(Chunk c in Chunks)
@@ -109,7 +110,8 @@ namespace GameJam_AlaCarte.Source.Map
                     {
                         if(t.Type == TileType.Sand)
                         {
-                            ret.Add(new Coordonnees(t.Get_Position().X * TextureFinder.SPRITESIZE, t.Get_Position().Y * TextureFinder.SPRITESIZE));
+                            coo = new Coordonnees(t.Get_Position().X * TextureFinder.SPRITESIZE, t.Get_Position().Y * TextureFinder.SPRITESIZE);
+                            ret.Add(coo);
                         }
                     }
                 }

@@ -36,22 +36,19 @@ namespace GameJam_AlaCarte.Source.Placeable
         {
             bool nop = true;
             Random rand = new Random();
-            Coordonnees coo;
 
             while(nop)
             {
+                nop = false;
                 Position.X = rand.Next(0, 16 * 8 * 8);
                 Position.Y = rand.Next(0, 16 * 8 * 8);
 
-                coo = new Coordonnees(Position.X, Position.Y);
-                
-                if (coord.Contains(coo))
+                foreach(Coordonnees c in coord)
                 {
+                    if(c.X == Position.X && c.Y == Position.Y)
+                    {
                         nop = true;
-                }
-                else
-                {
-                    nop = false;
+                    }
                 }
             }
 
