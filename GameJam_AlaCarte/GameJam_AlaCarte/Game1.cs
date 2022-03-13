@@ -56,6 +56,7 @@ namespace GameJam_AlaCarte
 
             TextureFinder.Load(Content);
             GM.GenerateMap(GraphicsDevice);
+            GM.Load(Content);
             Map = GM.Map;
             TextureFinder.PlaySongJeu();
             // TODO: use this.Content to load your game content here
@@ -114,7 +115,7 @@ namespace GameJam_AlaCarte
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Blue);
 
             
             switch (state)
