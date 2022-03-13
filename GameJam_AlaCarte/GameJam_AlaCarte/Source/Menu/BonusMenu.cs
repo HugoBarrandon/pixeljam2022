@@ -4,22 +4,22 @@ using GameJam_AlaCarte.Source.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
 
 namespace GameJam_AlaCarte.Source.Menu
 {
     class BonusMenu
     {
         public int NbBonus { get; private set; }
-        private Vector2 WindowDimension;
+
         private bool ChoiceDone;
         private BonusType Choice;
 
         public BonusMenu()
         {
-            Choice = BonusType.Speed;
-            ChoiceDone = false;
-            NbBonus = 3;
-            
+            Choice = BonusType.Time;
+            this.ChoiceDone = false;
+            NbBonus = 3;            
         }
 
 
@@ -33,12 +33,34 @@ namespace GameJam_AlaCarte.Source.Menu
             return Choice;
         }
 
-        public void Update(Point position)
+        public void ChoiceHasToBeMade()
+        {
+            this.ChoiceDone = false;
+            this.Choice = BonusType.Time;
+        }
+
+        public void Update(MouseState Souris)
         {
             if (!ChoiceDone)
             {
-                WindowDimension.X = GraphicsDeviceManager.DefaultBackBufferWidth;
-                WindowDimension.Y = GraphicsDeviceManager.DefaultBackBufferHeight;
+
+                if (Souris.LeftButton==ButtonState.Pressed)
+                {
+                    int nb = Souris.X;
+                    if (nb < 533) {
+                        this.Choice = BonusType.Speed;
+                    }
+                    else if (nb < 1067)
+                    {
+                        Choice = BonusType.Time;
+                    }
+                    else
+                    {
+                        Choice = BonusType.FOV;
+                    }
+                    ChoiceDone = true;
+                }
+
             }
         }
 
@@ -47,10 +69,12 @@ namespace GameJam_AlaCarte.Source.Menu
         {
             if (!ChoiceDone)
             {   //1600*900
-                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(0, 0, 100, (int)WindowDimension.Y / 3), Color.White);
+                //_spriteBatch.Begin();
+                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(0, 0, 300, 300), Color.White);
                 _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(533,100, 300, 300), Color.White);
-                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(1066, 100, 300, 300), Color.White);
-
+                _spriteBatch.Draw(TextureFinder.BoatTexture, new Rectangle(1067, 100, 300, 300), Color.White);
+                //_spriteBatch.End();
+                
             }
         }
     }

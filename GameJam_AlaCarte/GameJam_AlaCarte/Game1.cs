@@ -66,7 +66,8 @@ namespace GameJam_AlaCarte
             {
                 case 0:
                     StartMenu.Update(gameTime);
-                    BonusMenu.Update(mouseState.Position);
+                    BonusMenu.Update(mouseState);
+                    
                     if (StartMenu.is_starting())
                     {
                         state += 1;
@@ -110,7 +111,6 @@ namespace GameJam_AlaCarte
                 case 1:
                     Map.Draw(_spriteBatch, Camera.Transform);
                     GM.Draw(_spriteBatch, Camera.Transform);
-
                     break;
             }
         }
