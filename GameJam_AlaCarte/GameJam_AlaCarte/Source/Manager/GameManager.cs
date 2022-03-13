@@ -69,6 +69,7 @@ namespace GameJam_AlaCarte.Source.Manager
             NbPoint = 0;
             boat.ResetSpeed();
             Treasure.Move(Map.GetGround());
+            boat.ResetBonus();
         }
 
         public void AddTime()
@@ -136,6 +137,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
                             break;
                     }
+                    boat.AddBonus();
                     TimePause.Stop();
                     TimeTotalPause = TimePause.Elapsed;
                 }

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using GameJam_AlaCarte.Source.Data;
+
 
 namespace GameJam_AlaCarte.Source.Boats
 {
@@ -23,6 +25,10 @@ namespace GameJam_AlaCarte.Source.Boats
 
         protected int rotation;
         protected int lastrotation;
+
+        protected int bateauSplash;
+
+        
         public Boat()
         {
             Position = Vector2.Zero;
@@ -32,6 +38,7 @@ namespace GameJam_AlaCarte.Source.Boats
             Width = 16;
             Height = 16;
             rotation = 0;
+            bateauSplash = 0;
         }
 
         public Vector2 Get_Position()
@@ -47,6 +54,17 @@ namespace GameJam_AlaCarte.Source.Boats
         public void IncreaseSpeed()
         {
             speed += 0.05;
+        }
+
+        public void AddBonus()
+        {
+            if(bateauSplash<(int)BoatType.Boat5)
+                bateauSplash++;
+        }
+
+        public void ResetBonus()
+        {
+            bateauSplash = 0;
         }
 
         public virtual void Update(GameTime gameTime, Vector2 screenCenter)
