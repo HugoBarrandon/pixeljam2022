@@ -2,11 +2,11 @@
 using GameJam_AlaCarte.Source.Data;
 using GameJam_AlaCarte.Source.Menu;
 using GameJam_AlaCarte.Source.Placeable;
+using GameJam_AlaCarte.Source.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
@@ -26,6 +26,8 @@ namespace GameJam_AlaCarte.Source.Manager
         private Boat boat;
         private FogWar fog;
 
+        public Map.Map Map { get; private set; }
+
         private CollisionManager collisionManager;
 
         private BonusMenu bonusMenu;
@@ -38,6 +40,7 @@ namespace GameJam_AlaCarte.Source.Manager
             collisionManager = new CollisionManager();
             Treasure = new Treasure();
             bonusMenu= new BonusMenu();
+
 
             finish = false;
 
@@ -66,6 +69,8 @@ namespace GameJam_AlaCarte.Source.Manager
                 Timer_String = "Perdu";
                 finish = true;
             }
+
+
 
             Treasure.Update(gameTime);
             boat.Update(gameTime,screenCenter);
@@ -102,6 +107,11 @@ namespace GameJam_AlaCarte.Source.Manager
         public Vector2 GetBoatPosition()
         {
             return boat.Get_Position();
+        }
+
+        public void GenerateMap(GraphicsDevice GraphicsDevice)
+        {
+            Map = new ProceduralMap(GraphicsDevice);
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameJam_AlaCarte.Source.Map
 {
-    abstract class Map
+    public abstract class Map
     {
 
         public abstract void Update(GameTime gameTime, KeyboardState keyboardState, MouseState mouseState, Vector2 cameraPosition, Matrix transform);
