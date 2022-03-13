@@ -67,6 +67,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public void init_time(GameTime gameTime)
         {
+            fov = 20;
             boat = new BasicBoat();
             TimerStart = gameTime.TotalGameTime;
             TotalTime = new TimeSpan(0, 1, 0);
@@ -154,7 +155,7 @@ namespace GameJam_AlaCarte.Source.Manager
                             break;
                     }
                     boat.AddBonus();
-                    TextureFinder.PlaySongWin();
+                    //TextureFinder.PlaySongWin();
                     TimePause.Stop();
                     TimeTotalPause = TimePause.Elapsed;
                 }
