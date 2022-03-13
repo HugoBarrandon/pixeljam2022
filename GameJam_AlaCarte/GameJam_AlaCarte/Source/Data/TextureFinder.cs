@@ -44,8 +44,13 @@ namespace GameJam_AlaCarte.Source.Data
         {
             Tiles = new Dictionary<TileType, Texture2D>();
             Tiles.Add(TileType.Ground, content.Load<Texture2D>("Tiles/sprite_ile_1"));
-            Tiles.Add(TileType.Water, content.Load<Texture2D>("Tiles/sprite_mer_2"));
+            Tiles.Add(TileType.Water, content.Load<Texture2D>("Tiles/sprite_mer_3"));
             Tiles.Add(TileType.Sand, content.Load<Texture2D>("Tiles/sprite_sable"));
+            Tiles.Add(TileType.Water2, content.Load<Texture2D>("Tiles/sprite_mer_1"));
+            Tiles.Add(TileType.Water3, content.Load<Texture2D>("Tiles/sprite_mer_2"));
+            Tiles.Add(TileType.Water4, content.Load<Texture2D>("Tiles/sprite_mer_4"));
+            Tiles.Add(TileType.Water5, content.Load<Texture2D>("Tiles/sprite_mer_5"));
+            Tiles.Add(TileType.Water6, content.Load<Texture2D>("Tiles/sprite_mer_6"));
 
         }
     }
