@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameJam_AlaCarte.Source.Data
 {
@@ -20,6 +21,9 @@ namespace GameJam_AlaCarte.Source.Data
         public static Dictionary<TileType, Texture2D> Tiles { get; private set; }
 
         public static Dictionary<BoatType, Texture2D> TextureBoat { get; private set; }
+
+        public static Microsoft.Xna.Framework.Media.Song SongJeu;
+        public static Microsoft.Xna.Framework.Media.Song SongWin;
 
         public static void Load(ContentManager content)
         {
@@ -39,6 +43,8 @@ namespace GameJam_AlaCarte.Source.Data
             MenuTexture.Add("StartingMenu", content.Load<Texture2D>("Menu/StartingMenu"));
             MenuTexture.Add("FinishMenu", content.Load<Texture2D>("Menu/FinishMenu"));
 
+            SongJeu = content.Load<Song>("Song/songjeu");
+            SongWin = content.Load<Song>("Song/songwin");
 
             LoadTiles(content);
             LoadBoat(content);
@@ -67,6 +73,17 @@ namespace GameJam_AlaCarte.Source.Data
             Tiles.Add(TileType.Water5, content.Load<Texture2D>("Tiles/sprite_mer_5"));
             Tiles.Add(TileType.Water6, content.Load<Texture2D>("Tiles/sprite_mer_6"));
 
+        }
+
+        public static void PlaySongJeu()
+        {
+            MediaPlayer.Play(SongJeu);
+            MediaPlayer.IsRepeating = true;
+        }
+
+        public static void PlaySongWin()
+        {
+            MediaPlayer.Play(SongWin);
         }
     }
 }

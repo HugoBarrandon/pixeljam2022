@@ -152,6 +152,18 @@
 /processorParam:TextureFormat=Color
 /build:Placeables/tresor2.png
 
+#begin Song/songjeu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Song/songjeu.mp3
+
+#begin Song/songwin.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Song/songwin.mp3
+
 #begin Tiles/sprite_ile_1.png
 /importer:TextureImporter
 /processor:TextureProcessor

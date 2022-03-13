@@ -3,6 +3,7 @@ using GameJam_AlaCarte.Source.Data;
 using GameJam_AlaCarte.Source.Manager;
 using GameJam_AlaCarte.Source.Map;
 using GameJam_AlaCarte.Source.Menu;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,6 +16,7 @@ namespace GameJam_AlaCarte
         private GraphicsDeviceManager graphics;
         private SpriteBatch _spriteBatch;
         private GameManager GM;
+
 
         private Camera Camera;
         private Map Map;
@@ -44,7 +46,7 @@ namespace GameJam_AlaCarte
             graphics.PreferredBackBufferWidth = 1600;
             graphics.PreferredBackBufferHeight = 900;
             graphics.ApplyChanges();
-
+            
             base.Initialize();
         }
 
@@ -55,7 +57,7 @@ namespace GameJam_AlaCarte
             TextureFinder.Load(Content);
             GM.GenerateMap(GraphicsDevice);
             Map = GM.Map;
-
+            TextureFinder.PlaySongJeu();
             // TODO: use this.Content to load your game content here
         }
 
@@ -114,7 +116,7 @@ namespace GameJam_AlaCarte
         {
             GraphicsDevice.Clear(Color.Black);
 
-
+            
             switch (state)
             {
                 case 0:
