@@ -96,6 +96,29 @@ namespace GameJam_AlaCarte.Source.Manager
                     TimePause.Start();
                 }
             }
+            else
+            {
+                bonusMenu.Update(mouse);
+                if (bonusMenu.IsChoiceDone())
+                {
+                    switch (bonusMenu.GetChoice())
+                    {
+                        case BonusType.Speed:
+
+                            break;
+
+                        case BonusType.Time:
+                            AddTime();
+                            break;
+
+                        case BonusType.FOV:
+
+                            break;
+                    }
+                    TimePause.Stop();
+                    TimeTotalPause = TimePause.Elapsed;
+                }
+            }
 
         }
 
