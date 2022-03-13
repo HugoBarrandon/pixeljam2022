@@ -86,8 +86,8 @@ namespace GameJam_AlaCarte.Source.Map
 
             int margeX = -1*(int)pos.X % Chunk.SIZE;
             int margeY = -1*(int)pos.Y % Chunk.SIZE;
-
             int num = MAPSIZE * (-1*X) + (-1*Y);
+
             ret.Add(Chunks[num]);
 
             return ret;
