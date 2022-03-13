@@ -32,7 +32,7 @@ namespace GameJam_AlaCarte.Source.Manager
 
         public GameManager()
         {
-            TotalTime = new TimeSpan(0, 0, 10);
+            TotalTime = new TimeSpan(0, 1, 0);
             boat = new BasicBoat();
             fog = new FogWar();
             collisionManager = new CollisionManager();

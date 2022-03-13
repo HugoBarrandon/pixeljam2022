@@ -14,7 +14,7 @@ namespace GameJam_AlaCarte.Source.Menu
 
         public void Update(GameTime gameTime)
         {
-            if(Keyboard.GetState().GetPressedKeys().Length > 0)
+            if(Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 start = true;
             }
