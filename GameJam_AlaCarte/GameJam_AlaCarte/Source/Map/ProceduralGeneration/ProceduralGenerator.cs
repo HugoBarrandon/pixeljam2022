@@ -39,14 +39,14 @@ namespace GameJam_AlaCarte.Source.Map.ProceduralGeneration
                     if (noise[i, j] < 210)
                     {
                         Random ran=new Random();
-                        int nb = ran.Next(0, 1000);
+                        int nb = ran.Next(0, 10000);
 
-                        if (nb == 98)
+                        if (nb >= 98 && nb<108)
                         {
                             map[i].Add(new Tile.Tile(TileType.Water2, new Vector2(offsetX + i, offsetY + j)));
 
                         }
-                        else if (nb == 44)
+                        else if (nb >= 0 && nb<30)
                         {
                             map[i].Add(new Tile.Tile(TileType.Water3, new Vector2(offsetX + i, offsetY + j)));
 
@@ -56,12 +56,12 @@ namespace GameJam_AlaCarte.Source.Map.ProceduralGeneration
                             map[i].Add(new Tile.Tile(TileType.Water4, new Vector2(offsetX + i, offsetY + j)));
 
                         }
-                        else if (nb == 727)//WYSI
+                        else if (nb <= 727 && nb >705)//WYSI
                         {
                             map[i].Add(new Tile.Tile(TileType.Water5, new Vector2(offsetX + i, offsetY + j)));
 
                         }
-                        else if (nb == 42)//WYSI
+                        else if (nb >= 42 && nb<=48)
                         {
                             map[i].Add(new Tile.Tile(TileType.Water6, new Vector2(offsetX + i, offsetY + j)));
 
