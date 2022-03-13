@@ -96,11 +96,6 @@ namespace GameJam_AlaCarte.Source.Manager
                     TimePause.Start();
                 }
             }
-            else
-            {
-                Timer_String = "Perdu";
-                finish = true;
-            }
 
 
 

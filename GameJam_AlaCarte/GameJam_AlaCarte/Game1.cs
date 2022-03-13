@@ -22,6 +22,7 @@ namespace GameJam_AlaCarte
         private BonusMenu BonusMenu;
 
         private int state = 0;
+        int i = 0;
 
         public Game1()
         {
@@ -79,12 +80,14 @@ namespace GameJam_AlaCarte
 
 
                 case 1:
+                    i++;
                     GM.Update(gameTime, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2),mouseState);
                     Camera.Update(gameTime, GM.GetBoatPosition());
                     Map.Update(gameTime, keyboardState, mouseState, Vector2.Zero, Camera.Transform);
 
                     if (GM.finish)
                     {
+                        Debug.WriteLine(i);
                         state = 0;
                         Reset();
                     }
