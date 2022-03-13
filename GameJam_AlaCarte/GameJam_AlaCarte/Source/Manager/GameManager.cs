@@ -159,10 +159,8 @@ namespace GameJam_AlaCarte.Source.Manager
         public void Draw(SpriteBatch _spriteBatch,Matrix transform)
         {
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.White);
-            _spriteBatch.DrawString(TextureFinder.BasicFont, "Points : " + NbPoint, new Vector2(10, 50), Color.White);
+
             boat.Draw(_spriteBatch);
-            _spriteBatch.DrawString(TextureFinder.BasicFont, Treasure.Get_Position().X.ToString(), new Vector2(10, 200), Color.Black);
 
             _spriteBatch.End();
 
@@ -176,9 +174,6 @@ namespace GameJam_AlaCarte.Source.Manager
             Treasure.Draw(_spriteBatch);
             _spriteBatch.End();
 
-            _spriteBatch.Begin();
-            bonusMenu.Draw(_spriteBatch);
-            _spriteBatch.End();
 
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
@@ -186,6 +181,13 @@ namespace GameJam_AlaCarte.Source.Manager
             Fog.Parameters["size"].SetValue(3);
             _spriteBatch.Draw(TextureFinder.noir,new Rectangle(0,0,1600,900),Color.White);
             _spriteBatch.End();
+
+            _spriteBatch.Begin();
+            bonusMenu.Draw(_spriteBatch);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.White);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, "Points : " + NbPoint, new Vector2(10, 50), Color.White);
+            _spriteBatch.End();
+
         }
 
         public Vector2 GetBoatPosition()
