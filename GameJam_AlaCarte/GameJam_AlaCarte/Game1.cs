@@ -50,6 +50,7 @@ namespace GameJam_AlaCarte
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TextureFinder.Load(Content);
+            GM.Load(Content);
             Map = new ProceduralMap(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here

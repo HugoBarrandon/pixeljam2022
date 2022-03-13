@@ -3,6 +3,7 @@ using GameJam_AlaCarte.Source.Data;
 using GameJam_AlaCarte.Source.Menu;
 using GameJam_AlaCarte.Source.Placeable;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -24,17 +25,17 @@ namespace GameJam_AlaCarte.Source.Manager
         private Treasure Treasure;
 
         private Boat boat;
-        private FogWar fog;
 
         private CollisionManager collisionManager;
 
         private BonusMenu bonusMenu;
 
+        private Effect Fog;
+
         public GameManager()
         {
             TotalTime = new TimeSpan(0, 0, 10);
             boat = new BasicBoat();
-            fog = new FogWar();
             collisionManager = new CollisionManager();
             Treasure = new Treasure();
             bonusMenu= new BonusMenu();
@@ -42,6 +43,11 @@ namespace GameJam_AlaCarte.Source.Manager
             finish = false;
 
             Timer_String = "";
+        }
+
+        public void Load(ContentManager content)
+        {
+            Fog = content.Load<Effect>("Effects/File");
         }
 
         public void init_time(GameTime gameTime)
@@ -87,15 +93,29 @@ namespace GameJam_AlaCarte.Source.Manager
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.DrawString(TextureFinder.BasicFont, Timer_String, new Vector2(10, 10), Color.Black);
             boat.Draw(_spriteBatch);
+            _spriteBatch.DrawString(TextureFinder.BasicFont, Treasure.Get_Position().X.ToString(), new Vector2(10, 200), Color.Black);
+
             _spriteBatch.End();
 
-            _spriteBatch.Begin(transformMatrix :transform, samplerState: SamplerState.PointClamp);
+            _spriteBatch.Begin(
+                transformMatrix :transform, 
+                samplerState: SamplerState.PointClamp
+                );
             //fog.Draw(_spriteBatch); 
+            Fog.CurrentTechnique.Passes[0].Apply();
+
             Treasure.Draw(_spriteBatch);
             _spriteBatch.End();
 
             _spriteBatch.Begin();
             bonusMenu.Draw(_spriteBatch);
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+            Fog.CurrentTechnique.Passes[0].Apply();
+            Fog.Parameters["size"].SetValue(3);
+            _spriteBatch.Draw(TextureFinder.noir,new Rectangle(0,0,1600,900),Color.White);
             _spriteBatch.End();
         }
 
