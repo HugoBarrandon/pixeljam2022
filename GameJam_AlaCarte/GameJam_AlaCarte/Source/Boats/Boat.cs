@@ -26,7 +26,7 @@ namespace GameJam_AlaCarte.Source.Boats
         protected int rotation;
         protected int lastrotation;
 
-        protected int bateauSplash;
+        protected BoatType bateauSplash;
 
         
         public Boat()
@@ -58,7 +58,7 @@ namespace GameJam_AlaCarte.Source.Boats
 
         public void AddBonus()
         {
-            if(bateauSplash<(int)BoatType.Boat5)
+            if(bateauSplash<BoatType.Boat5)
                 bateauSplash++;
         }
 

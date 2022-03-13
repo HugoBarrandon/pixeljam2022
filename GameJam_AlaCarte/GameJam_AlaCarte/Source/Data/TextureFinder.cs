@@ -40,16 +40,17 @@ namespace GameJam_AlaCarte.Source.Data
 
 
             LoadTiles(content);
+            LoadBoat(content);
         }
 
         private static void LoadBoat(ContentManager content)
         {
             TextureBoat = new Dictionary<BoatType, Texture2D>();
             TextureBoat.Add(BoatType.Boat1, content.Load<Texture2D>("Boat/sprite_bateau_1"));
-            TextureBoat.Add(BoatType.Boat2, content.Load<Texture2D>("Boat/sprite_bateau_final"));
-            TextureBoat.Add(BoatType.Boat3, content.Load<Texture2D>("Boat/sprite_bateau_vision"));
-            TextureBoat.Add(BoatType.Boat4, content.Load<Texture2D>("Boat/sprite_bateau_vitesse"));
-            TextureBoat.Add(BoatType.Boat5, content.Load<Texture2D>("Boat/sprite_bateau_vitessevision"));
+            TextureBoat.Add(BoatType.Boat2, content.Load<Texture2D>("Boat/sprite_bateau_vision"));
+            TextureBoat.Add(BoatType.Boat3, content.Load<Texture2D>("Boat/sprite_bateau_vitesse"));
+            TextureBoat.Add(BoatType.Boat4, content.Load<Texture2D>("Boat/sprite_bateau_vitessevision"));
+            TextureBoat.Add(BoatType.Boat5, content.Load<Texture2D>("Boat/sprite_bateau_final"));
             
         }
 
